@@ -27,9 +27,7 @@ if (!empty($_GET)) {
 </head>
 <body>
     <div class="container">
-
         <h1 class="text-center">Calcul et addition de devises</h1>
-
         <form class="form-main" action="" method="get">
             <div class="calcul">
                 <div class="first-amount">
@@ -51,7 +49,7 @@ if (!empty($_GET)) {
                     <option <?= isset($currency2) && $currency2 == 'USD' ? 'selected' : '' ?> value="USD">USD</option>
                 </select>
             </div>
-        <button>Calculer</button>
+            <button>Calculer</button>
         </form>
         <div class="result">
             <div class="label-result">Total :</div>
