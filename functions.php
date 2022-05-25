@@ -14,7 +14,7 @@ function calculate(float $firstValue, float $secondValue, $firstCurrency, $secon
         $secondAmount = $secondCurrency == 'USD' ? $secondValue * 0.9 : $secondValue;
     }
 
-    $result = $firstAmount + $secondAmount;
+    $result = round($firstAmount + $secondAmount, 2);
     return [
         'value' => $result,
         'currency' => $resultCurrency

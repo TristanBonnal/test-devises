@@ -73,3 +73,29 @@ button {
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 3px;
 }
+
+@media only screen and (max-width: 600px){
+    .calcul {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .first-amount,
+    .second-amount {
+        width: 100%;
+    }
+
+    .form-input,
+    .form-select {
+        flex: none;
+        width: 100%;
+    }
+
+    .form-label {
+        width: 100%;
+        text-align: center;
+        display: block;
+        margin-bottom: .5em;
+    }
+}

@@ -34,7 +34,7 @@ if (!empty($_GET)) {
             <div class="calcul">
                 <div class="first-amount">
                     <label for="amount1" class="form-label">Montant n°1</label>
-                    <input type="number" class="form-input" id="amount1" name="amount1" value="<?= $amount1 ?? '' ?>">
+                    <input type="number" step="0.01" class="form-input" id="amount1" name="amount1" value="<?= $amount1 ?? '' ?>">
                 </div>
                 <select class="first-currency form-select" name="first-currency">
                     <option <?= isset($currency1) && $currency1 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
@@ -44,7 +44,7 @@ if (!empty($_GET)) {
             <div class="calcul">
                 <div class="second-amount">
                     <label for="amount2" class="form-label">Montant n°2</label>
-                    <input type="number" class="form-input" id="amount2" name="amount2" value="<?= $amount2 ?? '' ?>">
+                    <input type="number" step="0.01" class="form-input" id="amount2" name="amount2" value="<?= $amount2 ?? '' ?>">
                 </div>
                 <select class="second-currency form-select" name="second-currency">
                     <option <?= isset($currency2) && $currency2 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
