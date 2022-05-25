@@ -40,6 +40,14 @@ if (!empty($_GET)) {
                     <option <?= isset($currency1) && $currency1 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
                     <option <?= isset($currency1) && $currency1 == 'USD' ? 'selected' : '' ?> value="USD">USD</option>
                 </select>
+                <div class="arrow">
+                    =>
+                </div>
+                <select class="first-currency form-select" name="first-currency">
+                    <option <?= isset($currency3) && $currency3 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
+                    <option <?= isset($currency3) && $currency3 == 'USD' ? 'selected' : '' ?> value="USD">USD</option>
+                </select>
+                <div class="line-result"></div>
             </div>
             <div class="calcul">
                 <div class="second-amount">
@@ -50,13 +58,24 @@ if (!empty($_GET)) {
                     <option <?= isset($currency2) && $currency2 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
                     <option <?= isset($currency2) && $currency2 == 'USD' ? 'selected' : '' ?> value="USD">USD</option>
                 </select>
+                <div class="arrow">
+                    =>
+                </div>
+                <select class="first-currency form-select" name="first-currency">
+                    <option <?= isset($currency4) && $currency4 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
+                    <option <?= isset($currency4) && $currency4 == 'USD' ? 'selected' : '' ?> value="USD">USD</option>
+                </select>
+                <div class="line-result"></div>
             </div>
         <button>Calculer</button>
         </form>
         <div class="result">
             <div class="label-result">Total :</div>
             <div class="value-result"><?= $results['value'] ?? 0 ?></div>
-            <div class="currency-result"><?= $results['currency'] ?? 'EUR' ?></div>
+            <select class="first-currency form-select" name="first-currency">
+                <option <?= isset($currency4) && $currency4 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
+                <option <?= isset($currency4) && $currency4 == 'USD' ? 'selected' : '' ?> value="USD">USD</option>
+            </select>
         </div>
     </div>  
 </body>
