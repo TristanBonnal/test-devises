@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    margin: auto;
+    width: 90%;
+    padding: 1em;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-main {
+    width: 100%;
+    margin: auto;
+}
+
+.calcul {
+    display: flex;
+    gap: 2em;
+    margin: 3em 0;
+}
+
+
+.form-input,
+.form-select {
+    flex: none;
+    width: 100px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+    background-color: inherit;
+    text-align: center;
+}
+
+.form-label {
+    display: inline-block;
+    width: 110px;
+    margin-right: 2em;
+}
+
+button {
+    height: 40px;
+    width: 100%;
+    background-color: rgb(229, 242, 231);
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.result {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5em 0;
+}
+
+.value-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40px;
+    text-align: center;
+    width: 400px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+}
