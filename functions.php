@@ -1,4 +1,5 @@
 <?php
+//Convertit le montant avec la devise à gauche en entrée, celle de droite en sortie
 function calculateLine(float $inputValue, string $currencyInput, string $currencyOuput) {
     $rates = [
         'EUR' => [
@@ -22,9 +23,24 @@ function calculateLine(float $inputValue, string $currencyInput, string $currenc
     return $inputValue * $currentRate;
 }
 
+//Calcule le total des deux montants dans la devise demandée
 function calculateTotal(float $inputValue1, float $inputValue2, string $currencyInput1, string $currencyInput2, string $currencyOuput) {
     $result = calculateLine($inputValue1, $currencyInput1, $currencyOuput) +
               calculateLine($inputValue2, $currencyInput2, $currencyOuput)
     ;
     return $result;
+}
+
+//Factorisation des formulaires select dans le html
+function selectCurrency(int $id) {
+    $eurAttribute = isset($_GET['currency' . $id]) && $_GET['currency' . $id] == 'EUR' ? 'selected' : '';
+    $dolAttribute = isset($_GET['currency' . $id]) && $_GET['currency' . $id] == 'USD' ? 'selected' : '';
+    $yenAttribute = isset($_GET['currency' . $id]) && $_GET['currency' . $id] == 'JPY' ? 'selected' : '';
+    return <<<HTML
+        <select class="form-select" name="currency$id">
+            <option $eurAttribute value="EUR">EUR</option>
+            <option $dolAttribute value="USD">USD</option>
+            <option $yenAttribute value="JPY">JPY</option>
+        </select>
+HTML;
 }
