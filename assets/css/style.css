@@ -57,7 +57,8 @@ button {
 .result {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 2em;
     align-items: center;
     margin: 5em 0;
 }

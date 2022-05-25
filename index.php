@@ -1,3 +1,18 @@
+<!-- logique -->
+<?php
+require_once "functions.php";
+if (!empty($_GET)) {
+    $amount1 = (float) $_GET['amount1'] ?? 0;
+    $amount2 = (float) $_GET['amount2'] ?? 0;
+    $currency1 = $_GET['first-currency'] ?? 'EUR';
+    $currency2 = $_GET['second-currency'] ?? 'EUR';
+
+    $results = calculate($amount1, $amount2, $currency1, $currency2);
+}
+?>
+
+
+<!-- html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,33 +34,30 @@
             <div class="calcul">
                 <div class="first-amount">
                     <label for="amount1" class="form-label">Montant n°1</label>
-                    <input type="number" class="form-input" id="value1">
+                    <input type="number" class="form-input" id="amount1" name="amount1" value="<?= $amount1 ?? '' ?>">
                 </div>
                 <select class="first-currency form-select" name="first-currency">
-                    <option selected>Devise</option>
-                    <option value="eur">EUR</option>
-                    <option value="usd">USD</option>
+                    <option <?= isset($currency1) && $currency1 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
+                    <option <?= isset($currency1) && $currency1 == 'USD' ? 'selected' : '' ?> value="USD">USD</option>
                 </select>
             </div>
             <div class="calcul">
                 <div class="second-amount">
                     <label for="amount2" class="form-label">Montant n°2</label>
-                    <input type="number" class="form-input" id="value2">
+                    <input type="number" class="form-input" id="amount2" name="amount2" value="<?= $amount2 ?? '' ?>">
                 </div>
                 <select class="second-currency form-select" name="second-currency">
-                    <option selected>Devise</option>
-                    <option value="eur">EUR</option>
-                    <option value="usd">USD</option>
+                    <option <?= isset($currency2) && $currency2 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
+                    <option <?= isset($currency2) && $currency2 == 'USD' ? 'selected' : '' ?> value="USD">USD</option>
                 </select>
             </div>
         <button>Calculer</button>
         </form>
         <div class="result">
             <div class="label-result">Total :</div>
-            <div class="value-result">0</div>
-            <div class="currency-result">EUR</div>
+            <div class="value-result"><?= $results['value'] ?? 0 ?></div>
+            <div class="currency-result"><?= $results['currency'] ?? 'EUR' ?></div>
         </div>
-    </div>
-    
+    </div>  
 </body>
 </html>
