@@ -44,3 +44,24 @@ function selectCurrency(int $id) {
         </select>
 HTML;
 }
+
+function convertToString(
+    float $amount1, 
+    float $amount2, 
+    string $currency1, 
+    string $currency2, 
+    string $currency3, 
+    string $currency4, 
+    string $currency5, 
+    float $result1,
+    float $result2,
+    float $result3) {
+    $formatedString = 
+        "Conversion " . (new DateTime())->format('d/m/Y H:i') . " : 
+        $amount1 $currency1 = $result1 $currency3 |
+        $amount2 $currency2 = $result2 $currency4 |
+        Total = $result3 $currency5
+        "
+    ;
+    return $formatedString;
+}

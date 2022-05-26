@@ -1,7 +1,9 @@
 <!-- logique -->
 <?php
+session_start();
 require_once "functions.php";
 if (!empty($_GET)) {
+    // Récupération des valeurs entrées dans les champs par l'utilisateur
     $amount1 = (float) $_GET['amount1'] ?? 0;
     $amount2 = (float) $_GET['amount2'] ?? 0;
     $currency1 = $_GET['currency1'] ?? 'EUR';
@@ -10,9 +12,14 @@ if (!empty($_GET)) {
     $currency4 = $_GET['currency4'] ?? 'EUR';
     $currency5 = $_GET['currency5'] ?? 'EUR';
 
+    // Traitement des données pour les afficher ensuite dans le html
     $result1 = calculateLine($amount1, $currency1, $currency3);
     $result2 = calculateLine($amount2, $currency2, $currency4);
     $total = calculateTotal($amount1, $amount2, $currency1, $currency2, $currency5);
+
+    // Stockage des conversions en sesssion pour les envoyer plus tard à l'utilisateur par mail
+    $_SESSION['history'][]= convertToString($amount1, $amount2, $currency1, $currency2, $currency3, $currency4, $currency5, $result1, $result2, $total);
+    var_dump($_SESSION['history']);
 }
 ?>
 
