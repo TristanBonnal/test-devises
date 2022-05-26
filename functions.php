@@ -45,6 +45,7 @@ function selectCurrency(int $id) {
 HTML;
 }
 
+// Formate les résultats d'une conversion en chaine de charactères lisible
 function convertToString(
     float $amount1, 
     float $amount2, 
