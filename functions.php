@@ -1,6 +1,6 @@
 <?php
 //Convertit le montant avec la devise à gauche en entrée, celle de droite en sortie
-function calculateLine(float $inputValue, string $currencyInput, string $currencyOuput) {
+function calculateLine(float $inputValue, string $currencyInput, string $currencyOuput): float {
     $rates = [
         'EUR' => [
             'EUR' => 1,
@@ -24,7 +24,7 @@ function calculateLine(float $inputValue, string $currencyInput, string $currenc
 }
 
 //Calcule le total des deux montants dans la devise demandée
-function calculateTotal(float $inputValue1, float $inputValue2, string $currencyInput1, string $currencyInput2, string $currencyOuput) {
+function calculateTotal(float $inputValue1, float $inputValue2, string $currencyInput1, string $currencyInput2, string $currencyOuput): float {
     $result = calculateLine($inputValue1, $currencyInput1, $currencyOuput) +
               calculateLine($inputValue2, $currencyInput2, $currencyOuput)
     ;
@@ -32,7 +32,7 @@ function calculateTotal(float $inputValue1, float $inputValue2, string $currency
 }
 
 //Factorisation des formulaires select dans le html
-function selectCurrency(int $id) {
+function selectCurrency(int $id): string {
     $eurAttribute = isset($_GET['currency' . $id]) && $_GET['currency' . $id] == 'EUR' ? 'selected' : '';
     $dolAttribute = isset($_GET['currency' . $id]) && $_GET['currency' . $id] == 'USD' ? 'selected' : '';
     $yenAttribute = isset($_GET['currency' . $id]) && $_GET['currency' . $id] == 'JPY' ? 'selected' : '';
@@ -56,13 +56,13 @@ function convertToString(
     string $currency5, 
     float $result1,
     float $result2,
-    float $result3) {
-    $formatedString = 
-        "Conversion " . (new DateTime())->format('d/m/Y H:i') . " : 
-        $amount1 $currency1 = $result1 $currency3 |
-        $amount2 $currency2 = $result2 $currency4 |
-        Total = $result3 $currency5
-        "
-    ;
-    return $formatedString;
+    float $result3): string {
+        $formatedString = 
+            "Conversion " . (new DateTime())->format('d/m/Y H:i') . " : 
+            $amount1 $currency1 = $result1 $currency3 |
+            $amount2 $currency2 = $result2 $currency4 |
+            Total = $result3 $currency5
+            "
+        ;
+        return $formatedString;
 }
