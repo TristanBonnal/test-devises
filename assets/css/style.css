@@ -54,7 +54,7 @@ h1 {
     margin-right: 2em;
 }
 
-button {
+.calculate-btn {
     height: 40px;
     width: 100%;
     background-color: rgb(229, 242, 231);

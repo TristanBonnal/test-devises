@@ -19,7 +19,6 @@ if (!empty($_GET)) {
 
     // Stockage des conversions en sesssion pour les envoyer plus tard à l'utilisateur par mail
     $_SESSION['history'][]= convertToString($amount1, $amount2, $currency1, $currency2, $currency3, $currency4, $currency5, $result1, $result2, $total);
-    var_dump($_SESSION['history']);
 }
 ?>
 
@@ -64,12 +63,17 @@ if (!empty($_GET)) {
                 <?= selectCurrency(4) ?>
                 <div class="line-result"><?= $result2 ?? 0 ?></div>
             </div>
-            <button>Calculer</button>
+            <button class="calculate-btn">Calculer</button>
             <div class="result">
                 <div class="label-result">Total :</div>
                 <div class="value-result"><?= $total ?? 0 ?></div>
                 <?= selectCurrency(5) ?>
             </div>
+        </form>
+        <h3>Enregistrez votre historique</h3>
+        <form action="sendmail.php" method="post">
+            <input type="text" placeholder="exemple@gmail.com" name="email">
+            <button class="send-btn">Envoyer</button>
         </form>
     </div>  
 </body>
