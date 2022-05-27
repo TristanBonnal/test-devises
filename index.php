@@ -27,7 +27,7 @@ if (!empty($_GET)) {
 if (!empty($_POST)) {
     $mailAdress = $_POST['email'];
     $subject = "Historiques de vos conversions";
-    $message = implode("\n", $_SESSION['history']); // Possibilité de formater plus prorement le texte
+    $message = implode("\n", $_SESSION['history'] ?? [] ); // Possibilité de formater plus prorement le texte
 
     // Si l'email a un format valide, on envoie l'historique, 
     // et on passe a true la variable qui nous permettra d'afficher un message de validation
