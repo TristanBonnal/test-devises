@@ -1,16 +1,26 @@
 <!-- logique -->
 <?php
+session_start();
 require_once "functions.php";
 if (!empty($_GET)) {
+    // Récupération des valeurs entrées dans les champs par l'utilisateur
     $amount1 = (float) $_GET['amount1'] ?? 0;
     $amount2 = (float) $_GET['amount2'] ?? 0;
-    $currency1 = $_GET['first-currency'] ?? 'EUR';
-    $currency2 = $_GET['second-currency'] ?? 'EUR';
+    $currency1 = $_GET['currency1'] ?? 'EUR';
+    $currency2 = $_GET['currency2'] ?? 'EUR';
+    $currency3 = $_GET['currency3'] ?? 'EUR';
+    $currency4 = $_GET['currency4'] ?? 'EUR';
+    $currency5 = $_GET['currency5'] ?? 'EUR';
 
-    $results = calculate($amount1, $amount2, $currency1, $currency2);
+    // Traitement des données pour les afficher ensuite dans le html
+    $result1 = calculateLine($amount1, $currency1, $currency3);
+    $result2 = calculateLine($amount2, $currency2, $currency4);
+    $total = calculateTotal($amount1, $amount2, $currency1, $currency2, $currency5);
+
+    // Stockage des conversions en sesssion pour les envoyer plus tard à l'utilisateur par mail
+    $_SESSION['history'][]= convertToString($amount1, $amount2, $currency1, $currency2, $currency3, $currency4, $currency5, $result1, $result2, $total);
 }
 ?>
-
 
 <!-- html -->
 <!DOCTYPE html>
@@ -34,28 +44,37 @@ if (!empty($_GET)) {
                     <label for="amount1" class="form-label">Montant n°1</label>
                     <input type="number" step="0.01" class="form-input" id="amount1" name="amount1" value="<?= $amount1 ?? '' ?>">
                 </div>
-                <select class="first-currency form-select" name="first-currency">
-                    <option <?= isset($currency1) && $currency1 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
-                    <option <?= isset($currency1) && $currency1 == 'USD' ? 'selected' : '' ?> value="USD">USD</option>
-                </select>
+                <?= selectCurrency(1) ?>
+                <div class="arrow">
+                    =>
+                </div>
+                <?= selectCurrency(3) ?>
+                <div class="line-result"><?= $result1 ?? 0 ?></div>
             </div>
             <div class="calcul">
                 <div class="second-amount">
                     <label for="amount2" class="form-label">Montant n°2</label>
                     <input type="number" step="0.01" class="form-input" id="amount2" name="amount2" value="<?= $amount2 ?? '' ?>">
                 </div>
-                <select class="second-currency form-select" name="second-currency">
-                    <option <?= isset($currency2) && $currency2 != 'USD' ? 'selected' : '' ?> value="EUR">EUR</option>
-                    <option <?= isset($currency2) && $currency2 == 'USD' ? 'selected' : '' ?> value="USD">USD</option>
-                </select>
+                <?= selectCurrency(2) ?>
+                <div class="arrow">
+                    =>
+                </div>
+                <?= selectCurrency(4) ?>
+                <div class="line-result"><?= $result2 ?? 0 ?></div>
             </div>
-            <button>Calculer</button>
+            <button class="calculate-btn">Calculer</button>
+            <div class="result">
+                <div class="label-result">Total :</div>
+                <div class="value-result"><?= $total ?? 0 ?></div>
+                <?= selectCurrency(5) ?>
+            </div>
         </form>
-        <div class="result">
-            <div class="label-result">Total :</div>
-            <div class="value-result"><?= $results['value'] ?? 0 ?></div>
-            <div class="currency-result"><?= $results['currency'] ?? 'EUR' ?></div>
-        </div>
+        <h3>Enregistrez votre historique</h3>
+        <form action="sendmail.php" method="post">
+            <input type="text" placeholder="exemple@gmail.com" name="email">
+            <button class="send-btn">Envoyer</button>
+        </form>
     </div>  
 </body>
 </html>

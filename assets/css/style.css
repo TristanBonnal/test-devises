@@ -23,13 +23,15 @@ h1 {
 
 .calcul {
     display: flex;
+    align-items: center;
     gap: 2em;
     margin: 3em 0;
 }
 
 
 .form-input,
-.form-select {
+.form-select,
+.line-result {
     flex: none;
     width: 100px;
     height: 40px;
@@ -39,13 +41,20 @@ h1 {
     text-align: center;
 }
 
+.line-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(233, 233, 233);
+}
+
 .form-label {
     display: inline-block;
     width: 110px;
     margin-right: 2em;
 }
 
-button {
+.calculate-btn {
     height: 40px;
     width: 100%;
     background-color: rgb(229, 242, 231);
@@ -72,6 +81,7 @@ button {
     width: 400px;
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 3px;
+    background-color: rgb(233, 233, 233);
 }
 
 @media only screen and (max-width: 600px){
