@@ -2,6 +2,8 @@
 <?php
 session_start();
 require_once "functions.php";
+
+// Conversion devises, addition, et stockage en session
 if (!empty($_GET)) {
     // Récupération des valeurs entrées dans les champs par l'utilisateur
     $amount1 = (float) $_GET['amount1'] ?? 0;
@@ -19,6 +21,23 @@ if (!empty($_GET)) {
 
     // Stockage des conversions en sesssion pour les envoyer plus tard à l'utilisateur par mail
     $_SESSION['history'][]= convertToString($amount1, $amount2, $currency1, $currency2, $currency3, $currency4, $currency5, $result1, $result2, $total);
+}
+
+// Envoie d'email
+if (!empty($_POST)) {
+    $mailAdress = $_POST['email'];
+    $subject = "Historiques de vos conversions";
+    $message = implode("\n", $_SESSION['history']); // Possibilité de formater plus prorement le texte
+
+    // Si l'email a un format valide, on envoie l'historique, 
+    // et on passe a true la variable qui nous permettra d'afficher un message de validation
+    if (filter_var($mailAdress, FILTER_VALIDATE_EMAIL)) {
+        // TODO : configurer headers + SMTP
+        //mail($mailAdress, $subject, $message);
+        $emailCheck = true;
+    } else {
+        $emailCheck = false;
+    }
 }
 ?>
 
@@ -71,10 +90,15 @@ if (!empty($_GET)) {
             </div>
         </form>
         <h3>Enregistrez votre historique</h3>
-        <form action="sendmail.php" method="post">
+        <form action="" method="post">
             <input type="text" placeholder="exemple@gmail.com" name="email">
             <button class="send-btn">Envoyer</button>
         </form>
+        <?php if (isset($emailCheck) && $emailCheck) : ?>
+            <p class="success-message">Historique envoyé !</p>
+        <?php elseif (isset($emailCheck) && !$emailCheck) : ?>
+            <p class="error-message">Email non valide !</p>
+        <?php endif ?>
     </div>  
 </body>
 </html>

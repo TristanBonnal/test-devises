@@ -36,7 +36,7 @@ h1 {
     width: 100px;
     height: 40px;
     border: 1px solid rgba(0, 0, 0, 0.4);
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: inherit;
     text-align: center;
 }
@@ -58,7 +58,7 @@ h1 {
     height: 40px;
     width: 100%;
     background-color: rgb(229, 242, 231);
-    border-radius: 3px;
+    border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
 }
@@ -80,8 +80,26 @@ h1 {
     text-align: center;
     width: 400px;
     border: 1px solid rgba(0, 0, 0, 0.4);
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: rgb(233, 233, 233);
+}
+
+.success-message {
+    width: fit-content;
+    border: 1px solid rgb(203, 255, 220);
+    background-color: rgb(180, 221, 170);
+    color: rgb(71, 130, 71);
+    border-radius: 5px;
+    padding: 1em;
+}
+
+.error-message {
+    width: fit-content;
+    border: 1px solid rgb(255, 203, 203);
+    background-color: rgb(221, 170, 170);
+    color: rgb(130, 71, 71);
+    border-radius: 5px;
+    padding: 1em;
 }
 
 @media only screen and (max-width: 600px){
