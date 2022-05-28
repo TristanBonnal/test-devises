@@ -1,7 +1,7 @@
-<!-- logique -->
 <?php
 session_start();
 require_once "functions.php";
+var_dump($_SESSION['history']);
 
 // Conversion devises, addition, et stockage en session
 if (!empty($_GET)) {
