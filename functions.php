@@ -68,11 +68,11 @@ function convertToString(
 }
 
 // Conversion via l'api
-function convertFromApi() {
+function convertFromApi(string $inputCurrency, string $outputCurrency, float $amount) {
     $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.apilayer.com/exchangerates_data/convert?to=JPY&from=EUR&amount=15",
+    CURLOPT_URL => "https://api.apilayer.com/exchangerates_data/convert?to=$inputCurrency&from=$outputCurrency&amount=$amount",
     CURLOPT_HTTPHEADER => array(
         "Content-Type: text/plain",
         "apikey: 1Z61cECQAIZMeKGDJtREUODef0O0QsMU"
@@ -89,5 +89,5 @@ curl_setopt_array($curl, array(
     $response = curl_exec($curl);
 
     curl_close($curl);
-    var_dump(json_decode($response));
+    dump(json_decode($response));
 }
