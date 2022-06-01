@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once "functions.php";
+convertFromApi();
+die;
 
 // Conversion devises, addition, et stockage en session
 if (!empty($_GET)) {
