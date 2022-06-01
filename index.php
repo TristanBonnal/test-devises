@@ -52,6 +52,7 @@ if (!empty($_POST)) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 <body>
     <div class="container">
@@ -59,24 +60,22 @@ if (!empty($_POST)) {
         <form class="form-main" action="" method="get">
             <div class="calcul">
                 <div class="first-amount">
-                    <label for="amount1" class="form-label">Montant n°1</label>
-                    <input type="number" step="0.01" class="form-input" id="amount1" name="amount1" value="<?= $amount1 ?? '' ?>">
+                    <input placeholder="Montant 1" type="number" step="0.01" class="form-input" id="amount1" name="amount1" value="<?= $amount1 ?? '' ?>">
                 </div>
                 <?= selectCurrency(1) ?>
                 <div class="arrow">
-                    =>
+                    <i class="bi bi-arrow-right-circle"></i>
                 </div>
                 <?= selectCurrency(3) ?>
                 <div class="line-result"><?= $result1 ?? 0 ?></div>
             </div>
             <div class="calcul">
                 <div class="second-amount">
-                    <label for="amount2" class="form-label">Montant n°2</label>
-                    <input type="number" step="0.01" class="form-input" id="amount2" name="amount2" value="<?= $amount2 ?? '' ?>">
+                    <input placeholder="Montant 2" type="number" step="0.01" class="form-input" id="amount2" name="amount2" value="<?= $amount2 ?? '' ?>">
                 </div>
                 <?= selectCurrency(2) ?>
                 <div class="arrow">
-                    =>
+                    <i class="bi bi-arrow-right-circle"></i>
                 </div>
                 <?= selectCurrency(4) ?>
                 <div class="line-result"><?= $result2 ?? 0 ?></div>
@@ -84,20 +83,23 @@ if (!empty($_POST)) {
             <button class="calculate-btn">Calculer</button>
             <div class="result">
                 <div class="label-result">Total :</div>
-                <div class="value-result"><?= $total ?? 0 ?></div>
                 <?= selectCurrency(5) ?>
+                <div class="value-result"><?= $total ?? 0 ?></div>
             </div>
         </form>
-        <h3>Enregistrez votre historique</h3>
-        <form action="" method="post">
-            <input type="text" placeholder="exemple@gmail.com" name="email">
-            <button class="send-btn">Envoyer</button>
-        </form>
-        <?php if (isset($emailCheck) && $emailCheck) : ?>
-            <p class="success-message">Historique envoyé !</p>
-        <?php elseif (isset($emailCheck) && !$emailCheck) : ?>
-            <p class="error-message">Email non valide !</p>
-        <?php endif ?>
+        <hr>
+        <div class="history">
+            <h3>Enregistrez votre historique</h3>
+            <form action="" method="post">
+                <input class="email-input" type="text" placeholder="exemple@gmail.com" name="email">
+                <button class="send-btn">Envoyer</button>
+            </form>
+            <?php if (isset($emailCheck) && $emailCheck) : ?>
+                <p class="success-message">Historique envoyé !</p>
+            <?php elseif (isset($emailCheck) && !$emailCheck) : ?>
+                <p class="error-message">Email non valide !</p>
+            <?php endif ?>
+        </div>
     </div>  
 </body>
 </html>

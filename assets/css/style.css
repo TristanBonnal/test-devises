@@ -9,14 +9,21 @@ body {
 .container {
     margin: auto;
     width: 90%;
+    max-width: 1000px;
     padding: 1em;
 }
 
 h1 {
     text-align: center;
+    margin-bottom: 2em;
 }
 
 .form-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2em;
     width: 100%;
     margin: auto;
 }
@@ -25,42 +32,62 @@ h1 {
     display: flex;
     align-items: center;
     gap: 2em;
-    margin: 3em 0;
 }
 
+.arrow {
+    color: rgb(92, 155, 129);
+}
 
 .form-input,
 .form-select,
+.email-input,
 .line-result {
     flex: none;
-    width: 100px;
+    width: 90px;
     height: 40px;
-    border: 1px solid rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     background-color: inherit;
     text-align: center;
+}
+
+input:focus-visible,
+select:focus-visible {
+    outline: 1px solid rgb(179, 231, 207);
+}
+
+input:hover,
+select:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .line-result {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(233, 233, 233);
+    background-color: rgb(236, 248, 243);
 }
 
-.form-label {
-    display: inline-block;
-    width: 110px;
-    margin-right: 2em;
-}
-
-.calculate-btn {
+.calculate-btn,
+.send-btn {
+    color: rgb(61, 61, 61);
     height: 40px;
-    width: 100%;
-    background-color: rgb(229, 242, 231);
+    width: 180px;
+    background: linear-gradient(rgb(221, 240, 221), rgb(200, 228, 205));
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(189, 186, 186, 0.6);
     cursor: pointer;
+}
+
+.calculate-btn:hover {
+    color: rgb(51, 51, 51);
+    background: linear-gradient(rgb(234, 250, 234), rgb(203, 224, 206));
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.153);
+}
+
+.calculate-btn:active {
+    color: rgb(61, 61, 61);
+    background: linear-gradient(rgb(221, 240, 221), rgb(200, 228, 205));
 }
 
 .result {
@@ -69,7 +96,7 @@ h1 {
     justify-content: center;
     gap: 2em;
     align-items: center;
-    margin: 5em 0;
+    margin: 1em 0;
 }
 
 .value-result {
@@ -78,10 +105,10 @@ h1 {
     justify-content: center;
     height: 40px;
     text-align: center;
-    width: 400px;
+    width: 90px;
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 5px;
-    background-color: rgb(233, 233, 233);
+    background-color: rgb(236, 248, 243);
 }
 
 .success-message {
@@ -102,11 +129,29 @@ h1 {
     padding: 1em;
 }
 
+.history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.email-input {
+    width: 200px;
+    height: 30px;
+}
+
+.send-btn {
+    margin-left: 1em;
+    height: 30px;
+    width: fit-content;
+}
+
 @media only screen and (max-width: 600px){
     .calcul {
         width: 100%;
         flex-direction: column;
         align-items: center;
+        gap: .5em;
     }
 
     .arrow {
