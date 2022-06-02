@@ -79,7 +79,8 @@ select:hover {
     cursor: pointer;
 }
 
-.calculate-btn:hover {
+.calculate-btn:hover,
+.send-btn:hover {
     color: rgb(51, 51, 51);
     background: linear-gradient(rgb(234, 250, 234), rgb(203, 224, 206));
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.153);
