@@ -2,8 +2,6 @@
 session_start();
 require_once "functions.php";
 require_once "vendor/autoload.php";
-convertFromApi();
-die;
 
 // Conversion devises, addition, et stockage en session
 if (!empty($_GET)) {
@@ -17,9 +15,9 @@ if (!empty($_GET)) {
     $currency5 = $_GET['currency5'] ?? 'EUR';
 
     // Traitement des données pour les afficher ensuite dans le html
-    $result1 = calculateLine($amount1, $currency1, $currency3);
-    $result2 = calculateLine($amount2, $currency2, $currency4);
-    $total = calculateTotal($amount1, $amount2, $currency1, $currency2, $currency5);
+    $result1 = convertFromApi($amount1, $currency1, $currency3);
+    $result2 = convertFromApi($amount2, $currency2, $currency4);
+    $total = calculateTotalApi($amount1, $amount2, $currency1, $currency2, $currency5);
 
     // Stockage des conversions en sesssion pour les envoyer plus tard à l'utilisateur par mail
     $_SESSION['history'][]= convertToString($amount1, $amount2, $currency1, $currency2, $currency3, $currency4, $currency5, $result1, $result2, $total);

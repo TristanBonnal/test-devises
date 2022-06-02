@@ -68,18 +68,20 @@ function convertToString(
 }
 
 // Conversion via l'api
-function convertFromApi(string $inputCurrency, string $outputCurrency, float $amount) {
+function convertFromApi(float $amount, string $inputCurrency, string $outputCurrency): float {
+    if ($amount == 0) return 0;
+
     $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.apilayer.com/exchangerates_data/convert?to=$inputCurrency&from=$outputCurrency&amount=$amount",
+    CURLOPT_URL => "https://api.apilayer.com/exchangerates_data/convert?to=$outputCurrency&from=$inputCurrency&amount=$amount",
     CURLOPT_HTTPHEADER => array(
         "Content-Type: text/plain",
         "apikey: 1Z61cECQAIZMeKGDJtREUODef0O0QsMU"
     ),
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_MAXREDIRS => 1,
     CURLOPT_TIMEOUT => 0,
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -89,5 +91,13 @@ curl_setopt_array($curl, array(
     $response = curl_exec($curl);
 
     curl_close($curl);
-    dump(json_decode($response));
+    $result = json_decode($response)->result;
+    return round($result, 3);
+}
+
+// Additions de deux conversions faites par l'api
+function calculateTotalApi(float $inputValue1, float $inputValue2, string $currencyInput1, string $currencyInput2, string $currencyOuput): float {
+    $result = convertFromApi($inputValue1, $currencyInput1, $currencyOuput) +
+              convertFromApi($inputValue2, $currencyInput2, $currencyOuput);
+    return $result;
 }
